@@ -1,6 +1,6 @@
 ## ekstep-content-plugin-jenkins-common
 
-Jenkins functions for content plugin build and deployment
+Jenkins [shared library](https://jenkins.io/doc/book/pipeline/shared-libraries/) for content plugin build and deployment
 
 ### Usage in plugin project
 
