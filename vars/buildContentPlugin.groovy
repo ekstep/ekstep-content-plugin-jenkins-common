@@ -18,7 +18,7 @@ def call(body) {
             stage('Build') {
                 steps {
                     sh '''
-                    rm -rf bower_components/content-editor* bower_components/renderer node_modules/ekstep-content-plugin-dev-common
+                    rm -rf bower_components/content-editor* bower_components/renderer node_modules/ekstep-content-plugin-dev-common node_modules/eslint-config-ekstep-content-plugin
                     bower cache clean
                     npm install
                     gulp
