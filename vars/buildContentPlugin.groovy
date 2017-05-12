@@ -18,7 +18,8 @@ def call(body) {
             stage('Build') {
                 steps {
                     sh '''
-                    rm -rf bower_components/content-editor* bower_components/renderer node_modules/ekstep-content-plugin-dev-common node_modules/eslint-config-ekstep-content-plugin
+                    rm -rf bower_components/content-editor* bower_components/renderer* bower_components/ekstep-content-plugin-dev-common
+                    rm -rf node_modules/ekstep-content-plugin-dev-common node_modules/eslint-config-ekstep-content-plugin
                     bower cache clean
                     npm install
                     gulp
@@ -26,9 +27,11 @@ def call(body) {
                 }
                 post {
                     always {
-                        junit 'coverage/junit-test-report.xml'
-                        publishHTML([reportDir: 'coverage/html-test-report', reportFiles: 'index.html', reportName: 'Test Report', allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportTitles: ''])
-                        publishHTML([reportDir: 'coverage/phantomjs', reportFiles: 'index.html', reportName: 'Test Coverage Report', allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportTitles: ''])
+                        junit 'coverage/**/junit-test-report.xml'
+                        publishHTML([reportDir: 'coverage/editor/html-test-report', reportFiles: 'index.html', reportName: 'Editor Test Report', allowMissing: true, alwaysLinkToLastBuild: false, keepAll: false, reportTitles: ''])
+                        publishHTML([reportDir: 'coverage/editor/phantomjs', reportFiles: 'index.html', reportName: 'Editor Test Coverage Report', allowMissing: true, alwaysLinkToLastBuild: false, keepAll: false, reportTitles: ''])
+                        publishHTML([reportDir: 'coverage/renderer/html-test-report', reportFiles: 'index.html', reportName: 'Renderer Test Report', allowMissing: true, alwaysLinkToLastBuild: false, keepAll: false, reportTitles: ''])
+                        publishHTML([reportDir: 'coverage/renderer/phantomjs', reportFiles: 'index.html', reportName: 'Renderer Test Coverage Report', allowMissing: true, alwaysLinkToLastBuild: false, keepAll: false, reportTitles: ''])
                     }
                     success {
                         archive 'dist/*.zip'
