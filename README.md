@@ -2,9 +2,9 @@
 
 Jenkins [shared library](https://jenkins.io/doc/book/pipeline/shared-libraries/) for content plugin build and deployment
 
-### Usage in plugin project
+### Usage
 
-Create a file named `Jenkinsfile` in root of your plugin project with below content
+* `buildContentPlugin`: Create a file named `Jenkinsfile` in root of your plugin project with below content
 
 ```groovy
 @Library('ekstep-content-plugin-jenkins-common') _
@@ -13,6 +13,19 @@ buildContentPlugin {
 
 }
 ```
+
+* `deployContentPlugin`: Create a pipeline job in jenkins with script similar to
+
+```groovy
+@Library('ekstep-content-plugin-jenkins-common') _
+
+deployContentPlugin {
+	env = 'dev'
+	pluginArtifactsSourceJob = 'ekstep/org.ekstep.plugins.extractwords/master'
+}
+```
+
+> Note: deployContentPlugin is currently limited to deploying internal plugins using https://github.com/ekstep/AWS-Setup
 
 ### Jenkins Server Setup
 
