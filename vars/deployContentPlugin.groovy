@@ -39,6 +39,24 @@ def call(body) {
         }
         post {
             success{
+                archive 'dist/*.zip'
+
+                step([
+                    $class: 'S3BucketPublisher',
+                    entries: [[
+                        sourceFile: 'dist/*.zip',
+                        bucket: "ekstep-public-${config.env}/contributed-plugins",
+                        selectedRegion: 'ap-south-1',
+                        noUploadOnFailure: true,
+                        managedArtifacts: true,
+                        flatten: true,
+                        showDirectlyInBrowser: true,
+                        keepForever: true,
+                    ]],
+                    profileName: 'aws-iam-role-based-access',
+                    dontWaitForConcurrentBuildCompletion: false,
+                ])
+
                 slackSend(color: 'good', message: "SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)")
             }
             failure {
