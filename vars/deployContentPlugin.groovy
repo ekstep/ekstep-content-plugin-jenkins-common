@@ -16,7 +16,7 @@ def call(body) {
                 sh "rm -rf dist"
 
                 step ([$class: 'CopyArtifact',
-                  projectName: config.projectName,
+                  projectName: config.pluginArtifactsSourceJob,
                   filter: 'dist/*.zip',
                   selector: [$class: 'ParameterizedBuildSelector', parameterName: 'DEPLOY_BUILD_NUMBER']
                 ]);
