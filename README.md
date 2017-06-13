@@ -33,7 +33,7 @@ deployContentPlugin {
 
 * Follow the instructions in [jenkins shared library documentation](https://jenkins.io/doc/book/pipeline/shared-libraries/) to add this repository as shared library with name `ekstep-content-plugin-jenkins-common`
 
-> Important: Jenkins has an [issue](https://issues.jenkins-ci.org/browse/JENKINS-41497) due to which changes to shared library triggers all dependent builds with pollSCM. As a [workaround](https://issues.jenkins-ci.org/browse/JENKINS-41497?focusedCommentId=296934&page=com.atlassian.jira.plugin.system.issuetabpanels%3Acomment-tabpanel#comment-296934), in "Advanced" section select "Polling ignores commits with certain messages" and set "Excluded Messages" to ".*"
+> Important: Jenkins has an [issue](https://issues.jenkins-ci.org/browse/JENKINS-41497) due to which changes to shared library triggers all dependent builds with pollSCM. As a [workaround](https://issues.jenkins-ci.org/browse/JENKINS-41497?focusedCommentId=296934&page=com.atlassian.jira.plugin.system.issuetabpanels%3Acomment-tabpanel#comment-296934) "Additional Behaviours" -> "Add" -> "Polling ignores commits with certain messages" -> Set "Excluded Messages" to ".*"
 
 ##### 2. NodeJS tool setup
 
