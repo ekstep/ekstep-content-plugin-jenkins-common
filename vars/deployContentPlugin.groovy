@@ -30,7 +30,7 @@ def call(body) {
                             export ANSIBLE_HOST_KEY_CHECKING=False
                             export PLUGIN_ZIP_FILE_PATH=$(pwd)/$(ls dist/*.zip | head -1)
                             cd ansible
-                            ansible-playbook -i inventory/$PLUGIN_DEPLOY_INVENTORY plugin-deploy.yml --vault-password-file ../analytics/.vault_pass.txt -v --extra-vars "plugin_zip_file_path=$PLUGIN_ZIP_FILE_PATH"
+                            ansible-playbook -i inventory/$PLUGIN_DEPLOY_INVENTORY plugin-deploy.yml --vault-password-file ~/.ansible_password.txt --extra-vars "plugin_zip_file_path=$PLUGIN_ZIP_FILE_PATH"
                             '''
                         }
                     }
